@@ -1,0 +1,16 @@
+name: Build and deploy
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build_upload:
+    name: Build and upload image
+    uses: ./.github/workflows/build.yaml
+    secrets: inherit
+
+  deployment:
+    name: Update deployment
+    needs: build_upload
+    uses: ./.github/workflows/deploy.yaml    
+    secrets: inherit

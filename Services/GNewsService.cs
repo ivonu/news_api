@@ -46,7 +46,7 @@ public class GNewsService : INewsService {
             .Add("apikey", apiKey)
             .Add("max", n.ToString());
             
-        return await MakeRequest($"top-headlines?{q}");
+        return await MakeRequest($"top-headlines{q}");
     } 
 
     public async Task<List<NewsArticle>> GetNewsArticlesByKeywords(List<string> keywords) {
