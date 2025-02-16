@@ -25,7 +25,7 @@ jobs:
     - uses: azure/webapps-deploy@v2
       with:
         app-name: 'gnewsapi'
-        images: 'newsapiregistry.azurecr.io/newsapi:latest
+        images: 'newsapiregistry.azurecr.io/newsapi:latest'
 
     - name: Azure logout
       run: |
