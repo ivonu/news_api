@@ -21,5 +21,5 @@ jobs:
 
       - name: Build and push
         run: |
-          docker build -t newsapiregistry.azurecr.io/newsapi:latest 
+          docker build . -t newsapiregistry.azurecr.io/newsapi:latest 
           docker push newsapiregistry.azurecr.io/newsapi:latest
