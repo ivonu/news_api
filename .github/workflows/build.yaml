@@ -1,7 +1,7 @@
 name: Build and Upload to ACR
 
 on:
-    workflow_call:
+  workflow_call:
 
 jobs:
   build_upload:
