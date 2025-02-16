@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using news_api.Services;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace news_api.Controllers;
 
@@ -8,7 +9,10 @@ namespace news_api.Controllers;
 public class NewsController(INewsService newsService) : ControllerBase
 {
     [HttpGet("top")]
-    public async Task<IActionResult> GetNArticles([FromQuery] int n) {
+    [SwaggerOperation(
+        Summary = "Get n News Articles"
+    )]
+    public async Task<IActionResult> GetNArticles([FromQuery, SwaggerParameter("Number of articles")] int n) {
         try {
             var newsArticles = await newsService.GetNewsArticles(n);
             return StatusCode(StatusCodes.Status200OK, newsArticles);
@@ -19,7 +23,10 @@ public class NewsController(INewsService newsService) : ControllerBase
     }
 
     [HttpGet("search")]
-    public async Task<IActionResult> GetArticlesByKeyword([FromQuery] List<string> keywords) {
+    [SwaggerOperation(
+        Summary = "Search for News Articles"
+    )]
+    public async Task<IActionResult> GetArticlesByKeyword([FromQuery, SwaggerParameter("Keywords which all need to be included in title, description, or conten")] List<string> keywords) {
         try {
             var newsArticles = await newsService.GetNewsArticlesByKeywords(keywords);
             return StatusCode(StatusCodes.Status200OK, newsArticles);
@@ -30,7 +37,10 @@ public class NewsController(INewsService newsService) : ControllerBase
     }
 
     [HttpGet("date")]
-    public async Task<IActionResult> GetArticlesByDate([FromQuery] DateTime date) {
+    [SwaggerOperation(
+        Summary = "Search News Articles on a date"
+    )]
+    public async Task<IActionResult> GetArticlesByDate([FromQuery, SwaggerParameter("date in the format yyyy-mm-dd")] DateTime date) {
         try {
             var newsArticles = await newsService.GetNewsArticlesByDate(date);
             return StatusCode(StatusCodes.Status200OK, newsArticles);

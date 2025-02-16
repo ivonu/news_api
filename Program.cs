@@ -6,7 +6,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(o => {
+   o.EnableAnnotations();
+});
 
 builder.Services.AddScoped<INewsService, GNewsService>(
     serviceProvider => new GNewsService(builder.Configuration["apiKey"])
