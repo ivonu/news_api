@@ -1,0 +1,7 @@
+name: newsapi
+
+services:
+  newsapi:
+    build: .
+    ports:
+      - "8080:8080"
